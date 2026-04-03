@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>svgs photos</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <style>
+
+    :root {
+      --bg:         #d5dfeb;       /* page background color        */
+      --text:       #000000;       /* main text color              */
+      --muted:      #888888;       /* secondary / caption text     */
+      --accent:     #b07d4f;       /* highlight color (links etc)  */
+      --nav-height: 60px;          /* height of the top nav bar    */
+      --page-left:  2rem;          /* left margin for all sections */
+      --font-title: 'Playfair Display', serif;   /* heading font  */
+      --font-body:  'Lato', sans-serif;          /* body font     */
+    }
+
+    /* ── RESET ─────────────────────────────────────────────── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      padding-top: var(--nav-height); /* stop content hiding behind nav */
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* crops image to fill its box neatly */
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding-left: var(--page-left);
+      background: var(--bg);
+      border-bottom: 1px solid #000000;
+    }
+
+    /* CHANGE THIS: your name / site logo */
+    .nav-logo {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      color: #000000;
+      margin-right: auto; /* pushes links to the right */
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      padding-right: var(--page-left);
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #000000;
+    }
+
+    .nav-links a:hover {
+      color: #000000;
+      font-weight: 300;
+    }
+
+
+    /* ============================================================
+      HERO — full-screen opening image with text overlay
+    ============================================================ */
+    #hero {
+      position: relative;
+      height: calc(100vh - var(--nav-height));
+      /*overflow: hidden;*/
+      border-bottom: #000000;
+    }
+
+    .hero-bg {
+      width: 100%; height: 100%;
+         background-image: url('images/birds.jpg');
+
+
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero-text {
+      text-align: center;
+      justify-content: center;
+      transform: translateY(-110%);
+      bottom: 3rem;
+      left: var(--page-left);
+      color: #fff;
+    }
+
+    .hero-text h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 500;
+      line-height: 1.1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-top: 0.6rem;
+      opacity: 0.85;
+      letter-spacing: 0.08em;
+      font-family: serif;
+    }
+
+
+    /* ============================================================
+      SHARED SECTION STYLES
+    ============================================================ */
+    section {
+      padding: 2rem var(--page-left);
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+    }
+
+
+    /* ============================================================
+      GALLERY — 3-column photo grid
+      Add or remove .gallery-item divs to change number of photos
+    ============================================================ */
+    #gallery {
+      background: #d5dfeb;
+    }
+
+    .gallery-grid {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 22.5vw;
+      gap: 0.2rem;
+    }
+
+    .gallery-grid.active-grid
+    {
+      display: grid; 
+    }
+
+    .category-nav
+    {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cat-btn {
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .cat-btn.active, .cat-btn:hover {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* Make tall/portrait photos span 2 rows — add class="gallery-item tall" */
+    .gallery-item.tall { grid-row: span 2; }
+
+    .gallery-item.wide {grid-column: span 2; }
+
+    .gallery-item img {
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04); /* subtle zoom on hover */
+    }
+
+    /* Placeholder colors — remove these when you add real images */
+    .placeholder { background: #c4b49a; }
+    .placeholder.b { background: #8aа090; }
+    .placeholder.c { background: #9ab0bc; }
+    .placeholder.d { background: #b49a7a; }
+    .placeholder.e { background: #a09080; }
+    .placeholder.f { background: #8090a0; }
+
+
+    /* ============================================================
+      SPLIT SECTION — title on left, image on right
+      Duplicate this whole block to make more split sections
+    ============================================================ */
+    .split-section {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      padding: 5rem var(--page-left);
+    }
+
+    .split-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .split-text h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .split-text p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 0.95rem;
+      max-width: 420px;
+    }
+
+    .split-image {
+      flex: 1;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+
+    /* ============================================================
+      ABOUT — bio section
+    ============================================================ */
+    #about {
+      display: flex;
+      justify-content: center;
+      background: #d5dfeb;
+      margin: 0 auto;
+      text-align: center;
+      border-top: #000000;
+    }
+
+    .about-inner {
+      display: flex;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-photo {
+      width: 320px;
+      min-width: 220px;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .about-bio h2 {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+    }
+
+    /* CHANGE THIS: your bio paragraphs */
+    .about-bio p {
+      color: #000000;
+      line-height: 1.9;
+      margin-bottom: 1rem;
+      max-width: 500px;
+    }
+
+
+    /* ============================================================
+      CONTACT — simple contact form
+    ============================================================ */
+    #contact {
+      max-width: 560px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      border: 1px solid #d0d0d0;
+      padding: 0.9rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--bg);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      height: 130px;
+      resize: none;
+    }
+
+    .btn {
+      margin-top: 0.5rem;
+      padding: 0.85rem 2.5rem;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+      align-self: flex-start;
+    }
+
+    .btn:hover { background: var(--accent); }
+
+
+    /* ============================================================
+      FOOTER
+    ============================================================ */
+    footer {
+      padding: 2rem var(--page-left);
+      border-top: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+
+    /* ============================================================
+      MOBILE — stack layout on small screens
+    ============================================================ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; } /* hide nav links on mobile */
+
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .split-section {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .about-inner {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .about-photo { width: 100%; }
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <nav>
+    <span class="nav-logo">svg</span>
+    <ul class="nav-links">
+      <li><a href="#gallery">Photos</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-text">
+      <h1>svgs_photos_<br></h1>
+      <p>&emsp;</p>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2 class="section-title">Photos</h2>
+
+    <div class="category-nav">
+      <button class="cat-btn active" onclick="showCategory('general')">General</button>
+      <button class="cat-btn" onclick="showCategory('people')">People</button>
+      <button class="cat-btn" onclick="showCategory('badminton')">Badminton</button>
+    </div>
+
+<!-- all the diff grids -->
+    <div class="gallery-grid active-grid" id = "cat-general"> 
+
+      <div class="gallery-item">
+         <img loading = "lazy" src = "images/peopl1.jpg">
+        <div class="placeholder" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/nathan jiya.jpg">
+        <div class="placeholder c" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/leaves (1).jpg">
+        <div class="placeholder b" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/kitchen.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/abigail2.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/store window.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/yuvan3.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item wide">
+        <img loading = "lazy" src = "images/sausalito.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/dock.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/shoes.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/pole1.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/ryan5.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/heart.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/streaks.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/reva.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/pinkflowerbush.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/that one.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/moon5.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/sign.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/flower.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/green window.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/family bw.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/leaves.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/light.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/purpleflowers.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/david3.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/railroad.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/view.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/nathan2.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/pole.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/yellow.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/car.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/sunset1.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/golden.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/road.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/flower (1).jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/sunset3.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/gray.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+
+    </div>
+
+    <div class = "gallery-grid" id = "cat-people">
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/nathan1.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/reva.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/revatai.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/shriram5.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/that one.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/yuvan3.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/aadi2.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/nathan5.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/nathan2.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/peopl1.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/revatai aai.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/abigail2.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/nathan jiya.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/gang-1.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/navi-4.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/nathan abigail2.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/eye1.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/navi mirror.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/abigail14.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/me5.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/nathan3.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/twin towers.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/abigail1.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/yuvan1.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/jiya.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+    </div>
+
+    <div class = "gallery-grid" id = "cat-badminton">
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/andy1.jpg">
+      <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/bettie2.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/karen holly3.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/karen holly3.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/ryan5.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/sophia kara1.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/suraj.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/bryan issac.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/david3.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/sophia kara5.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/bettie5.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/anora.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/andy3.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/anirudh.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/karen1.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/karen holly2.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/bettie1.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/sajeeth.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/andrew1.jpg">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/holly1.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/anshina8.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+    </div>
+  </section>
+  
+
+  <section id="about">
+    <div class="about-inner">
+
+      <div class="about-photo">
+        <img loading = "lazy" src = "images/me7.jpg">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="about-bio">
+        <h2>Me!</h2>
+        <p>Photography is my favorite excuse to create as many moments as possible.<br>
+          This site serves as a place to document some of them. Hope you enjoy!
+        </p>
+      </div>
+
+      <div class="about-photo">
+        <img loading = "lazy" src = "images/camera.JPG">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p style="margin-bottom: 2rem; line-height: 1.8;">
+      Open for inquiry: @svgs_photos_ on instagram or svg282828@gmail.com
+    </p>
+  </section>
+
+
+  <footer>
+    <span>© 2026 svgs_photos_</span>
+  </footer>
+
+
+  <script>
+    function showCategory(category)
+    {
+      document.querySelectorAll('.gallery-grid').forEach(grid => 
+        {
+          grid.classList.remove('active-grid');
+        });
+
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById('cat-' + category).classList.add('active-grid');
+
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
