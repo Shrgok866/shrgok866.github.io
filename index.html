@@ -357,7 +357,10 @@
     @media (max-width: 768px) {
       .nav-links { display: none; } /* hide nav links on mobile */
 
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid {       
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 22.5vw;
+      gap: 0.2rem; }
 
       .split-section {
         flex-direction: column;
