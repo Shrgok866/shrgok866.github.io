@@ -90,7 +90,7 @@
 
     .hero-bg {
       width: 100%; height: 100%;
-         background-image: url('images/birds.jpg');
+         background-image: url('images/birds.webp');
 
 
       background-size: contain;
@@ -375,10 +375,54 @@
       .about-photo { width: 100%; }
     }
 
+    /* ── LIGHTBOX ───────────────────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.6);
+      cursor: default;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    #lightbox-close:hover { opacity: 1; }
+
   </style>
 </head>
 <body>
 
+  <!-- LIGHTBOX -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <span id="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+    <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+  </div>
 
   <nav>
     <span class="nav-logo">svg</span>
@@ -409,237 +453,237 @@
     <div class="gallery-grid active-grid" id = "cat-general"> 
 
       <div class="gallery-item">
-         <img loading = "lazy" src = "images/peopl1.jpg">
+         <img loading = "lazy" src = "images/peopl1_thumb.webp">
         <div class="placeholder" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/nathan jiya.jpg">
+        <img loading = "lazy" src = "images/nathan jiya_thumb.webp">
         <div class="placeholder c" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/goldflower.jpg">
+        <img loading = "lazy" src = "images/goldflower_thumb.webp">
         <div class="placeholder b" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/kitchen.jpg">
+        <img loading = "lazy" src = "images/kitchen_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/abigail2.jpg">
+        <img loading = "lazy" src = "images/abigail2_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/store window.jpg">
+        <img loading = "lazy" src = "images/store window_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/andy1.jpg">
+        <img loading = "lazy" src = "images/andy1_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item wide">
-        <img loading = "lazy" src = "images/sausalito.jpg">
+        <img loading = "lazy" src = "images/sausalito_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/amiya ananya shriya1.jpg">
+        <img loading = "lazy" src = "images/amiya ananya shriya1_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/heart.jpg">
+        <img loading = "lazy" src = "images/heart_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/yuvan3.jpg">
+        <img loading = "lazy" src = "images/yuvan3_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/dock.jpg">
+        <img loading = "lazy" src = "images/dock_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/shoes.jpg">
+        <img loading = "lazy" src = "images/shoes_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/pole1.jpg">
+        <img loading = "lazy" src = "images/pole1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/ryan5.jpg">
+        <img loading = "lazy" src = "images/ryan5_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/sign.jpg">
+        <img loading = "lazy" src = "images/sign_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/streaks.jpg">
+        <img loading = "lazy" src = "images/streaks_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/reva.jpg">
+        <img loading = "lazy" src = "images/reva_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/pinkflowerbush.jpg">
+        <img loading = "lazy" src = "images/pinkflowerbush_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/that one.jpg">
+        <img loading = "lazy" src = "images/that one_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/moon5.jpg">
+        <img loading = "lazy" src = "images/moon5_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/pole.jpg">
+        <img loading = "lazy" src = "images/pole_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/flower.jpg">
+        <img loading = "lazy" src = "images/flower_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/green window.jpg">
+        <img loading = "lazy" src = "images/green window_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/suraj2 senior night.jpg">
+        <img loading = "lazy" src = "images/suraj2 senior night_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/leaves (1).jpg">
+        <img loading = "lazy" src = "images/leaves (1)_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/light.jpg">
+        <img loading = "lazy" src = "images/light_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/purpleflowers.jpg">
+        <img loading = "lazy" src = "images/purpleflowers_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/family bw.jpg">
+        <img loading = "lazy" src = "images/family bw_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/bryan8.jpg">
+        <img loading = "lazy" src = "images/bryan8_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/moon1.jpg">
+        <img loading = "lazy" src = "images/moon1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/david3.jpg">
+        <img loading = "lazy" src = "images/david3_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/railroad.jpg">
+        <img loading = "lazy" src = "images/railroad_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/view.jpg">
+        <img loading = "lazy" src = "images/view_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/nathan2.jpg">
+        <img loading = "lazy" src = "images/nathan2_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/band5.jpg">
+        <img loading = "lazy" src = "images/band5_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/yellow.jpg">
+        <img loading = "lazy" src = "images/yellow_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/road.jpg">
+        <img loading = "lazy" src = "images/road_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/sunset1.jpg">
+        <img loading = "lazy" src = "images/sunset1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/golden.jpg">
+        <img loading = "lazy" src = "images/golden_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/car.jpg">
+        <img loading = "lazy" src = "images/car_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/flower (1).jpg">
+        <img loading = "lazy" src = "images/flower (1)_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/sunset3.jpg">
+        <img loading = "lazy" src = "images/sunset3_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/gray.jpg">
+        <img loading = "lazy" src = "images/gray_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/leaves.jpg">
+        <img loading = "lazy" src = "images/leaves_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/orange.jpg">
+        <img loading = "lazy" src = "images/orange_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/bettie12.jpg">
+        <img loading = "lazy" src = "images/bettie12_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
@@ -649,157 +693,157 @@
     <div class = "gallery-grid" id = "cat-people">
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/nathan1.jpg">
+        <img loading = "lazy" src = "images/nathan1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/reva.jpg">
+        <img loading = "lazy" src = "images/reva_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/revatai.jpg">
+        <img loading = "lazy" src = "images/revatai_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/shriram5.jpg">
+        <img loading = "lazy" src = "images/shriram5_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/andy nm.jpg"> //PUT ANDY TALL HERE
+        <img loading = "lazy" src = "images/andy nm_thumb.webp"> //PUT ANDY TALL HERE
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/yuvan3.jpg">
+        <img loading = "lazy" src = "images/yuvan3_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/aadi2.jpg">
+        <img loading = "lazy" src = "images/aadi2_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/nathan5.jpg">
+        <img loading = "lazy" src = "images/nathan5_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/nathan2.jpg">
+        <img loading = "lazy" src = "images/nathan2_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/peopl1.jpg">
+        <img loading = "lazy" src = "images/peopl1_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/revatai aai.jpg">
+        <img loading = "lazy" src = "images/revatai aai_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/abigail2.jpg">
+        <img loading = "lazy" src = "images/abigail2_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/nathan jiya.jpg">
+        <img loading = "lazy" src = "images/nathan jiya_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/gang-1.jpg">
+        <img loading = "lazy" src = "images/gang-1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/navi-4.jpg">
+        <img loading = "lazy" src = "images/navi-4_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/akhil eye.jpg">
+        <img loading = "lazy" src = "images/akhil eye_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/yuvan abigail.jpg">
+        <img loading = "lazy" src = "images/yuvan abigail_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/guitar.jpg">
+        <img loading = "lazy" src = "images/guitar_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/nathan abigail2.jpg">
+        <img loading = "lazy" src = "images/nathan abigail2_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/captains.jpg">
+        <img loading = "lazy" src = "images/captains_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/navi mirror.jpg">
+        <img loading = "lazy" src = "images/navi mirror_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/abigail14.jpg">
+        <img loading = "lazy" src = "images/abigail14_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/me5.jpg">
+        <img loading = "lazy" src = "images/me5_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/nathan3.jpg">
+        <img loading = "lazy" src = "images/nathan3_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/twin towers.jpg">
+        <img loading = "lazy" src = "images/twin towers_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/abigail1.jpg">
+        <img loading = "lazy" src = "images/abigail1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/yuvan1.jpg">
+        <img loading = "lazy" src = "images/yuvan1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/jiya.jpg">
+        <img loading = "lazy" src = "images/jiya_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/rachel nm.jpg">
+        <img loading = "lazy" src = "images/rachel nm_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/that one.jpg">
+        <img loading = "lazy" src = "images/that one_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/nathan board.jpg">
+        <img loading = "lazy" src = "images/nathan board_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
@@ -808,127 +852,127 @@
     <div class = "gallery-grid" id = "cat-badminton">
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/wilson bryan senior night.jpg">
+        <img loading = "lazy" src = "images/wilson bryan senior night_thumb.webp">
       <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/bettie6 senior night.jpg">
+        <img loading = "lazy" src = "images/bettie6 senior night_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/suraj2 senior night.jpg">
+        <img loading = "lazy" src = "images/suraj2 senior night_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/andrew1.jpg">
+        <img loading = "lazy" src = "images/andrew1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/ryan5.jpg">
+        <img loading = "lazy" src = "images/ryan5_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/mikayla2 senior night.jpg">
+        <img loading = "lazy" src = "images/mikayla2 senior night_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/jayden3 senior night.jpg">
+        <img loading = "lazy" src = "images/jayden3 senior night_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/jacob2 senior night.jpg">
+        <img loading = "lazy" src = "images/jacob2 senior night_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/david3.jpg">
+        <img loading = "lazy" src = "images/david3_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/sophia kara5.jpg">
+        <img loading = "lazy" src = "images/sophia kara5_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/karen holly3.jpg">
+        <img loading = "lazy" src = "images/karen holly3_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/sophia kara1.jpg">
+        <img loading = "lazy" src = "images/sophia kara1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/wilson2 senior night.jpg">
+        <img loading = "lazy" src = "images/wilson2 senior night_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/andy1b(1).jpg">
+        <img loading = "lazy" src = "images/andy1b(1)_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/karen1.jpg">
+        <img loading = "lazy" src = "images/karen1_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/karen holly2.jpg">
+        <img loading = "lazy" src = "images/karen holly2_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/bettie1.jpg">
+        <img loading = "lazy" src = "images/bettie1_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/sajeeth.jpg">
+        <img loading = "lazy" src = "images/sajeeth_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/andy3.jpg">
+        <img loading = "lazy" src = "images/andy3_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/holly1.jpg">
+        <img loading = "lazy" src = "images/holly1_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/anshina8.jpg">
+        <img loading = "lazy" src = "images/anshina8_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/vihaan2.jpg">
+        <img loading = "lazy" src = "images/vihaan2_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div> 
       
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/sophia.jpg">
+        <img loading = "lazy" src = "images/sophia_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/bettie12.jpg">
+        <img loading = "lazy" src = "images/bettie12_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>  
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/bettie11.jpg">
+        <img loading = "lazy" src = "images/bettie11_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
@@ -942,7 +986,7 @@
     <div class="about-inner">
 
       <div class="about-photo">
-        <img loading = "lazy" src = "images/me7.jpg">
+        <img loading = "lazy" src = "images/me7_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
@@ -1074,6 +1118,29 @@
 
       event.target.classList.add('active');
     }
+  </script>
+  <script>
+    // Add click handler to all gallery images
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        const fullSrc = img.src.replace('_thumb.webp', '.webp');
+        document.getElementById('lightbox-img').src = fullSrc;
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.getElementById('lightbox-img').src = '';
+      document.body.style.overflow = '';
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
   </script>
 
 </body>
