@@ -393,8 +393,10 @@
       inset: 0;
       z-index: 999;
       background: rgba(0,0,0,0.92);
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 0.9rem;
       cursor: zoom-out;
     }
 
@@ -402,7 +404,7 @@
 
     #lightbox img {
       max-width: 92vw;
-      max-height: 92vh;
+      max-height: 80vh;
       width: auto;
       height: auto;
       object-fit: contain;
@@ -425,6 +427,44 @@
 
     #lightbox-close:hover { opacity: 1; }
 
+    /* subtle prev/next + counter cluster, sits below the image so it
+       never overlaps it on any screen size */
+    #lightbox-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.1rem;
+      cursor: default;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    #lightbox-nav .lightbox-arrow {
+      color: #fff;
+      font-size: 1.3rem;
+      line-height: 1;
+      opacity: 0.5;
+      cursor: pointer;
+      padding: 0.5rem 0.7rem;
+      transition: opacity 0.2s;
+    }
+
+    #lightbox-nav .lightbox-arrow:hover { opacity: 1; }
+
+    #lightbox-counter {
+      color: #fff;
+      opacity: 0.6;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      min-width: 3.4rem;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      #lightbox img { max-height: 74vh; }
+      #lightbox-nav .lightbox-arrow { font-size: 1.15rem; padding: 0.5rem 0.6rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -433,6 +473,11 @@
   <div id="lightbox" onclick="closeLightbox()">
     <span id="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
     <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+    <div id="lightbox-nav" onclick="event.stopPropagation()">
+      <span class="lightbox-arrow" id="lightbox-prev" onclick="prevLightboxImage()">&#8249;</span>
+      <span id="lightbox-counter">1/1</span>
+      <span class="lightbox-arrow" id="lightbox-next" onclick="nextLightboxImage()">&#8250;</span>
+    </div>
   </div>
 
   <nav>
@@ -1438,12 +1483,28 @@
     }
   </script>
   <script>
+    let lightboxImages = [];
+    let lightboxIndex = 0;
+
+    function fullSrcOf(img) {
+      return img.src.replace('_thumb.webp', '.webp');
+    }
+
+    function showLightboxImage(index) {
+      lightboxIndex = index;
+      const img = lightboxImages[lightboxIndex];
+      document.getElementById('lightbox-img').src = fullSrcOf(img);
+      document.getElementById('lightbox-counter').textContent =
+        (lightboxIndex + 1) + '/' + lightboxImages.length;
+    }
+
     // Add click handler to all gallery images
     document.querySelectorAll('.gallery-item img').forEach(img => {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => {
-        const fullSrc = img.src.replace('_thumb.webp', '.webp');
-        document.getElementById('lightbox-img').src = fullSrc;
+        const grid = img.closest('.gallery-grid');
+        lightboxImages = Array.from(grid.querySelectorAll('.gallery-item img'));
+        showLightboxImage(lightboxImages.indexOf(img));
         document.getElementById('lightbox').classList.add('open');
         document.body.style.overflow = 'hidden';
       });
@@ -1455,9 +1516,22 @@
       document.body.style.overflow = '';
     }
 
-    // Close on Escape key
+    function nextLightboxImage() {
+      if (!lightboxImages.length) return;
+      showLightboxImage((lightboxIndex + 1) % lightboxImages.length);
+    }
+
+    function prevLightboxImage() {
+      if (!lightboxImages.length) return;
+      showLightboxImage((lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length);
+    }
+
+    // Keyboard navigation while lightbox is open
     document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
       if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextLightboxImage();
+      if (e.key === 'ArrowLeft') prevLightboxImage();
     });
   </script>
 
