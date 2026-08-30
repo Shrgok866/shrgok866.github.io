@@ -163,6 +163,12 @@
       display: grid; 
     }
 
+    /* Digicam grid — same behavior as the other grids, but 5 photos per row */
+    .gallery-grid.five-col {
+      grid-template-columns: repeat(5, 1fr);
+      grid-auto-rows: 13.5vw;
+    }
+
     .category-nav
     {
       display: flex;
@@ -204,7 +210,7 @@
     }
 
     .gallery-item:hover img {
-      transform: scale(1.04); /* subtle zoom on hover */
+      transform: scale(1.04);
     }
 
     .placeholder { background: #c4b49a; }
@@ -362,6 +368,11 @@
       grid-auto-rows: 18vw;
       gap: 0.2rem; }
 
+      .gallery-grid.five-col {
+        grid-template-columns: repeat(5, 1fr);
+        grid-auto-rows: 10.8vw;
+      }
+
       .split-section {
         flex-direction: column;
         gap: 2rem;
@@ -447,6 +458,7 @@
       <button class="cat-btn active" onclick="showCategory('general')">General</button>
       <button class="cat-btn" onclick="showCategory('people')">People</button>
       <button class="cat-btn" onclick="showCategory('badminton')">Badminton</button>
+      <button class="cat-btn" onclick="showCategory('digicam')">Digicam</button>
     </div>
 
 <!-- all the diff grids -->
@@ -1012,6 +1024,277 @@
       </div>
 
       
+
+    </div>
+
+    <div class = "gallery-grid five-col" id = "cat-digicam">
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/fence_thumb.webp">
+      <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0029_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_00511_thumb.webp">
+      <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item wide">
+        <img loading = "lazy" src = "images/aadi skate_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/eyeCONTACT_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/me nathan_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item wide">
+        <img loading = "lazy" src = "images/beac_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item wide">
+        <img loading = "lazy" src = "images/IMG_0012_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/lens_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_0073_thumb.webp">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0081_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_0116_thumb.webp">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/lonely_thumb.webp">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_0360_thumb.webp">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/the hillbillies_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/late tiny10_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0779_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item wide">
+        <img loading = "lazy" src = "images/howdy_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/pen_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_0096_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0408_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0427_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_0119_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0272_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0109_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0197_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0214_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0131_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0216_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/beach-min-wide_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/boys_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/chat_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/flower_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/flowers (1)_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/hills_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item wide">
+        <img loading = "lazy" src = "images/revatai1_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/guy_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/flowers_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0004_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/house_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/god_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0028_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_0050_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/eye_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0115_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/house_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/IMG_0020_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_0057_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/boats big_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/camera1_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_085_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/IMG_082_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/gang1_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+
 
     </div>
   </section>
