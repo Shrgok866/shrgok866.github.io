@@ -1,0 +1,9 @@
+convert to webp:
+	for f in *.JPG *.jpg *.jpeg; do [ -f "$f" ] && ffmpeg -i "$f" -q:v 80 "${f%.*}.webp"; done
+
+create webp thumbnails (shorter side is 1000px):
+	for f in *.webp; do [ -f "$f" ] && [[ "$f" != *_thumb.webp ]] && ffmpeg -i "$f" -vf "scale='if(gt(iw,ih),-1,1000)':'if(gt(iw,ih),1000,-1)'" "${f%.webp}_thumb.webp"; done
+	
+create resized jpg for insta (shorter side is 1440px):
+	for f in *.jpg; do [ -f "$f" ] && [[ "$f" != *_resized.jpg ]] && ffmpeg -i "$f" -vf "scale='if(gt(iw,ih),-1,1440)':'if(gt(iw,ih),1440,-1)'" "${f%.jpg}_resized.jpg"; done
+

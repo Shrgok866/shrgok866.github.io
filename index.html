@@ -527,7 +527,7 @@
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/nathan jiya_thumb.webp">
+        <img loading = "lazy" src = "images/abigail-horizontal-ithaca_thumb.webp">
         <div class="placeholder c" style="width:100%;height:100%"></div>
       </div>
 
@@ -542,7 +542,7 @@
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/abigail-main-ithaca_thumb.webp">
+        <img loading = "lazy" src = "images/yuvan-dual_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
@@ -583,7 +583,7 @@
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/abigail2_thumb.webp">
+        <img loading = "lazy" src = "images/bridge-cruise_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
@@ -605,6 +605,21 @@
       <div class="gallery-item">
         <img loading = "lazy" src = "images/streaks_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/ryan-cruise_thumb.webp">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/abigail2_thumb.webp">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
+      </div>
+
+      <div class="gallery-item tall">
+        <img loading = "lazy" src = "images/self-dual_thumb.webp">
+        <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
       <div class="gallery-item">
@@ -789,15 +804,20 @@
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/50mmselfie_thumb.webp">
+        <img loading = "lazy" src = "images/suit-dual_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
-
-      <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/yuv abigail-ithaca_thumb.webp">
-        <div class="placeholder f" style="width:100%;height:100%"></div>
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/ship-cruise_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
+
+      <div class="gallery-item">
+        <img loading = "lazy" src = "images/nathan jiya_thumb.webp">
+        <div class="placeholder d" style="width:100%;height:100%"></div>
+      </div>
+
 
 
     </div>
@@ -820,7 +840,7 @@
       </div>
 
       <div class="gallery-item">
-        <img loading = "lazy" src = "images/shriram5_thumb.webp">
+        <img loading = "lazy" src = "images/nathan-grain_thumb.webp">
         <div class="placeholder d" style="width:100%;height:100%"></div>
       </div>
 
@@ -840,7 +860,7 @@
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/tanmay4_thumb.webp">
+        <img loading = "lazy" src = "images/alex-cruise_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
@@ -860,7 +880,7 @@
       </div>
 
       <div class="gallery-item tall">
-        <img loading = "lazy" src = "images/abigail2_thumb.webp">
+        <img loading = "lazy" src = "images/tanmay4_thumb.webp">
         <div class="placeholder f" style="width:100%;height:100%"></div>
       </div>
 
@@ -1553,25 +1573,6 @@
       if (e.key === 'ArrowRight') nextLightboxImage();
       if (e.key === 'ArrowLeft') prevLightboxImage();
     });
-  </script>
-
-  <script>
-    // Fade-in-on-scroll for gallery items, section titles, and about/contact content
-    const revealTargets = document.querySelectorAll(
-      '.section-title, .gallery-item, .about-photo, .about-bio, #contact > p, #inquiry-form'
-    );
-    revealTargets.forEach(el => el.classList.add('reveal'));
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    revealTargets.forEach(el => revealObserver.observe(el));
   </script>
 
 </body>
