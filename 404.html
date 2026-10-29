@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>svgs photos</title>
+  <script>
+    // GitHub Pages serves this file for any path that doesn't exist (e.g. /people).
+    // Send the visitor to the main page with the path tucked into ?p=,
+    // and index.html switches to the right grid and restores the clean URL.
+    (function () {
+      var path = location.pathname;
+      var extra = location.search ? '&' + location.search.slice(1) : '';
+      location.replace('/?p=' + encodeURIComponent(path) + extra + location.hash);
+    })();
+  </script>
+</head>
+<body style="background:#d5dfeb;">
+</body>
+</html>
