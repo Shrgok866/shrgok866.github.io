@@ -511,10 +511,10 @@
     <h2 class="section-title">Gallery</h2>
 
     <div class="category-nav">
-      <button class="cat-btn active" onclick="showCategory('general')">General</button>
-      <button class="cat-btn" onclick="showCategory('people')">People</button>
-      <button class="cat-btn" onclick="showCategory('badminton')">Badminton</button>
-      <button class="cat-btn" onclick="showCategory('digicam')">Digicam</button>
+      <button class="cat-btn active" data-cat="general" onclick="showCategory('general')">General</button>
+      <button class="cat-btn" data-cat="people" onclick="showCategory('people')">People</button>
+      <button class="cat-btn" data-cat="badminton" onclick="showCategory('badminton')">Badminton</button>
+      <button class="cat-btn" data-cat="digicam" onclick="showCategory('digicam')">Digicam</button>
     </div>
 
 <!-- all the diff grids -->
@@ -1518,21 +1518,82 @@
 
 
   <script>
-    function showCategory(category)
+    // ── CATEGORY ROUTING ─────────────────────────────────────
+    // "general" lives at "/", every other grid at "/<name>" (e.g. /people).
+    const CATEGORIES = ['general', 'people', 'badminton', 'digicam'];
+
+    function categoryFromPath(path) {
+      const name = (path || '').replace(/^\/+|\/+$/g, '').toLowerCase();
+      return CATEGORIES.includes(name) ? name : 'general';
+    }
+
+    function pathForCategory(category) {
+      return category === 'general' ? '/' : '/' + category;
+    }
+
+    // Switch grids without touching the URL
+    function activateCategory(category)
     {
-      document.querySelectorAll('.gallery-grid').forEach(grid => 
+      if (!document.getElementById('cat-' + category)) category = 'general';
+
+      document.querySelectorAll('.gallery-grid').forEach(grid =>
         {
           grid.classList.remove('active-grid');
         });
 
       document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.classList.remove('active');
+        btn.classList.toggle('active', btn.dataset.cat === category);
       });
 
       document.getElementById('cat-' + category).classList.add('active-grid');
-
-      event.target.classList.add('active');
     }
+
+    // Called by the category buttons: switch grid AND update the URL
+    function showCategory(category)
+    {
+      activateCategory(category);
+
+      // Opened straight from disk (file://) there's no site root, so skip the URL change
+      if (location.protocol === 'file:') return;
+
+      const path = pathForCategory(category);
+      if (location.pathname !== path) {
+        try { history.pushState({ category }, '', path); } catch (e) {}
+      }
+    }
+
+    // On load: pick the grid from the URL.
+    // 404.html redirects bysvg.com/people → bysvg.com/?p=/people, so read that first.
+    (function initCategoryFromUrl() {
+      if (location.protocol === 'file:') return;
+
+      const params = new URLSearchParams(location.search);
+      const redirected = params.get('p');
+      const category = categoryFromPath(redirected !== null ? redirected : location.pathname);
+
+      activateCategory(category);
+
+      const cleanPath = pathForCategory(category);
+      if (location.pathname !== cleanPath || redirected !== null) {
+        params.delete('p');
+        const rest = params.toString();
+        try {
+          history.replaceState({ category }, '', cleanPath + (rest ? '?' + rest : '') + location.hash);
+        } catch (e) {}
+      }
+
+      // Deep link to a grid → bring the gallery into view
+      if (category !== 'general' && !location.hash) {
+        window.addEventListener('load', () => {
+          document.getElementById('gallery').scrollIntoView();
+        });
+      }
+    })();
+
+    // Back / forward buttons switch grids too
+    window.addEventListener('popstate', () => {
+      activateCategory(categoryFromPath(location.pathname));
+    });
   </script>
   <script>
     let lightboxImages = [];
