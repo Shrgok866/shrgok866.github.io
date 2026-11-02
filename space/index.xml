@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>space</title>
+      <link>https://bysvg.com/space</link>
+      <description>Last 10 notes on space</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>Tag Index</title>
+    <link>https://bysvg.com/space/tags/</link>
+    <guid>https://bysvg.com/space/tags/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 02 Nov 2026 02:05:13 GMT</pubDate>
+  </item><item>
+    <title>space</title>
+    <link>https://bysvg.com/space/</link>
+    <guid>https://bysvg.com/space/</guid>
+    <description><![CDATA[ A small, slowly growing collection of notes, projects and references. ]]></description>
+    <pubDate>Sun, 01 Nov 2026 07:00:00 GMT</pubDate>
+  </item><item>
+    <title>ORR mechanism</title>
+    <link>https://bysvg.com/space/notes/ORR-mechanism</link>
+    <guid>https://bysvg.com/space/notes/ORR-mechanism</guid>
+    <description><![CDATA[ The oxygen reduction reaction, O₂ + 4H⁺ + 4e⁻ → 2H₂O. Compared across catalysts like Pt(111). ]]></description>
+    <pubDate>Sun, 01 Nov 2026 07:00:00 GMT</pubDate>
+  </item><item>
+    <title>Pt(111)</title>
+    <link>https://bysvg.com/space/notes/Pt(111)</link>
+    <guid>https://bysvg.com/space/notes/Pt(111)</guid>
+    <description><![CDATA[ The standard benchmark surface for the ORR. ]]></description>
+    <pubDate>Sun, 01 Nov 2026 07:00:00 GMT</pubDate>
+  </item><item>
+    <title>Quantum ESPRESSO</title>
+    <link>https://bysvg.com/space/notes/Quantum-ESPRESSO</link>
+    <guid>https://bysvg.com/space/notes/Quantum-ESPRESSO</guid>
+    <description><![CDATA[ Plane-wave DFT code used for the N-doped CNTs vs Pt(111) project. Notes on settings, pseudopotentials and convergence go here. ]]></description>
+    <pubDate>Sun, 01 Nov 2026 07:00:00 GMT</pubDate>
+  </item><item>
+    <title>Notes</title>
+    <link>https://bysvg.com/space/notes/</link>
+    <guid>https://bysvg.com/space/notes/</guid>
+    <description><![CDATA[ Shorter notes on methods, tools and ideas. ]]></description>
+    <pubDate>Sun, 01 Nov 2026 07:00:00 GMT</pubDate>
+  </item><item>
+    <title>N-doped CNTs vs Pt(111)</title>
+    <link>https://bysvg.com/space/projects/N-doped-CNTs-vs-Pt(111)</link>
+    <guid>https://bysvg.com/space/projects/N-doped-CNTs-vs-Pt(111)</guid>
+    <description><![CDATA[ Comparing oxygen reduction on nitrogen-doped carbon nanotubes against the Pt(111) benchmark, using Quantum ESPRESSO calculations and the four-electron pathway. ]]></description>
+    <pubDate>Sun, 01 Nov 2026 07:00:00 GMT</pubDate>
+  </item><item>
+    <title>Projects</title>
+    <link>https://bysvg.com/space/projects/</link>
+    <guid>https://bysvg.com/space/projects/</guid>
+    <description><![CDATA[ Ongoing and past work. ]]></description>
+    <pubDate>Sun, 01 Nov 2026 07:00:00 GMT</pubDate>
+  </item><item>
+    <title>Reading list</title>
+    <link>https://bysvg.com/space/references/Reading-list</link>
+    <guid>https://bysvg.com/space/references/Reading-list</guid>
+    <description><![CDATA[  Nørskov et al., “Origin of the overpotential for oxygen reduction at a fuel-cell cathode” (2004). See ORR mechanism. ]]></description>
+    <pubDate>Sun, 01 Nov 2026 07:00:00 GMT</pubDate>
+  </item><item>
+    <title>References</title>
+    <link>https://bysvg.com/space/references/</link>
+    <guid>https://bysvg.com/space/references/</guid>
+    <description><![CDATA[ Papers, books and other things worth reading. ]]></description>
+    <pubDate>Sun, 01 Nov 2026 07:00:00 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
